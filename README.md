@@ -22,4 +22,4 @@ Check for more information about golang instal and configuration
 
 Usage example: `./WsTool ws://localhost:3000/echo/websocket -H "host:ws"`
 
-Use flag `--help` for mo information
+Use flag `--help` for more information
