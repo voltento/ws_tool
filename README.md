@@ -5,10 +5,11 @@ It can connect to a server by WebSocket protocol, send and get messages.<br/>
 Also, here is header customization.
 
 **Install**
-  
+
+Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`  
 For instalation run command: `go get -u github.com/voltento/WsTool`<br/>
-Binary will be installed to the `%GOPATH/bin` folder<br/>
-You must have installed golang and set the `%GOPATH` f.e. `export GOPATH=$HOME/go`
+Binary will be installed to the `$GOPATH/bin` folder<br/>
+You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go`
 
 Check for more information about golang instal and configuration
 - https://golang.org/doc/install 
@@ -16,7 +17,7 @@ Check for more information about golang instal and configuration
 
 **Dependenciec**
 - Golang 1.11.2 or above
-- Set `%GOPATH` before call installation script
+- Set `$GOPATH` before call installation script
 
 **Usage**
 
