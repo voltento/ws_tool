@@ -13,7 +13,7 @@ import (
 type Adress string
 
 func printHelp() {
-	fmt.Println("Args: url [-H \"HeaderName: Header Value\"]")
+	fmt.Println("Args: url [-H \"HeaderName: Header Value\"] [-C \"CookieName: Cookie Value\"]")
 }
 
 func parseHeaderKeyValue(s string) (string, string, error) {
@@ -27,6 +27,7 @@ func parseHeaderKeyValue(s string) (string, string, error) {
 		er = errors.New(fmt.Sprintf("Wrong header value. Header: %s\n", s))
 	} else {
 		key = header[0]
+		key = key[:len(key)-1]
 		value = header[1]
 	}
 
@@ -41,6 +42,12 @@ func processError(er error) {
 	}
 }
 
+const (
+	header = iota
+	coockie
+	undefined
+)
+
 func parseArgs() (Adress, http.Header) {
 	if len(os.Args) == 1 || os.Args[1] == "--help" {
 		printHelp()
@@ -49,8 +56,16 @@ func parseArgs() (Adress, http.Header) {
 
 	headers := http.Header{}
 	argIndex := 2
+	argType := undefined
 	for argIndex < len(os.Args) {
-		if os.Args[argIndex] != "-H" {
+
+		if os.Args[argIndex] == "-H" {
+			argType = header
+		} else if os.Args[argIndex] == "-C" {
+			argType = coockie
+		}
+
+		if argType == undefined {
 			er := errors.New(fmt.Sprintf("Can't parse arg value. Value: %s\n", os.Args[argIndex]))
 			processError(er)
 		}
@@ -64,7 +79,14 @@ func parseArgs() (Adress, http.Header) {
 		key, value, er := parseHeaderKeyValue(os.Args[argIndex])
 		processError(er)
 
-		headers.Add(key, value)
+		if argType == header {
+			headers.Add(key, value)
+		} else if argType == coockie {
+			ckoockie := http.Cookie{}
+			ckoockie.Name = key
+			ckoockie.Value = value
+			headers.Add("Cookie", fmt.Sprintf("%v=%v;", key, value))
+		}
 		argIndex += 1
 	}
 
@@ -72,9 +94,7 @@ func parseArgs() (Adress, http.Header) {
 }
 
 func main() {
-	var adress Adress
-	var headers http.Header
-	adress, headers = parseArgs()
+	adress, headers := parseArgs()
 
 	ws := new(WebSocketClient.WebSocket)
 	if er := ws.Connect(string(adress), headers); er != nil {

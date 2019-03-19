@@ -21,6 +21,6 @@ Check for more information about golang instal and configuration
 
 **Usage**
 
-Usage example: `./WsTool ws://localhost:3000/echo/websocket -H "host:ws"`
+Usage example: `./WsTool ws://localhost:3000/echo/websocket -H "host:ws" -C "userId=1"`
 
 Use flag `--help` for more information
