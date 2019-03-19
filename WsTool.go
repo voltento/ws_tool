@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"github.com/voltento/WsTool/WebSocketClient"
 	"net/http"
@@ -15,6 +16,31 @@ func printHelp() {
 	fmt.Println("Args: url [-H \"HeaderName: Header Value\"]")
 }
 
+func parseHeaderKeyValue(s string) (string, string, error) {
+	var (
+		key   string
+		value string
+		er    error
+	)
+	header := strings.SplitAfterN(s, ":", 2)
+	if len(header) != 2 {
+		er = errors.New(fmt.Sprintf("Wrong header value. Header: %s\n", s))
+	} else {
+		key = header[0]
+		value = header[1]
+	}
+
+	return key, value, er
+}
+
+func processError(er error) {
+	if er != nil {
+		fmt.Printf("Error occured. Error: ", er.Error())
+		printHelp()
+		os.Exit(1)
+	}
+}
+
 func parseArgs() (Adress, http.Header) {
 	if len(os.Args) == 1 || os.Args[1] == "--help" {
 		printHelp()
@@ -25,24 +51,20 @@ func parseArgs() (Adress, http.Header) {
 	argIndex := 2
 	for argIndex < len(os.Args) {
 		if os.Args[argIndex] != "-H" {
-			fmt.Printf("Can't parse arg value. Value: %s\n", os.Args[argIndex])
-			printHelp()
-			os.Exit(1)
-		}
-		argIndex += 1
-		if argIndex == len(os.Args) {
-			fmt.Printf("Value for header flag wasn't provided\n")
-			printHelp()
-			os.Exit(1)
-		}
-		header := strings.SplitAfterN(os.Args[argIndex], ":", 2)
-		if len(header) != 2 {
-			fmt.Printf("Wrong header value. Header: %s\n", os.Args[argIndex])
-			printHelp()
-			os.Exit(1)
+			er := errors.New(fmt.Sprintf("Can't parse arg value. Value: %s\n", os.Args[argIndex]))
+			processError(er)
 		}
 
-		headers.Add(header[0][:len(header[0])-1], header[1])
+		argIndex += 1
+		if argIndex == len(os.Args) {
+			er := errors.New(fmt.Sprintf("Value for header flag wasn't provided\n", os.Args[argIndex]))
+			processError(er)
+		}
+
+		key, value, er := parseHeaderKeyValue(os.Args[argIndex])
+		processError(er)
+
+		headers.Add(key, value)
 		argIndex += 1
 	}
 
