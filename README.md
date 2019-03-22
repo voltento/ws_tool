@@ -10,7 +10,7 @@ Also, here is header customization.
 The command will install the binary `wstool` to the `$GOPATH/bin` folder<br/><br/>
 You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
-Check for more information about golang instal and configuration
+Check for more information about golang install and configuration
 - https://golang.org/doc/install 
 - https://github.com/golang/go/wiki/SettingGOPATH
 
