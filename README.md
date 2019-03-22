@@ -6,11 +6,10 @@ Also, here is header customization.
 
 **Install**
 
-For instalation run command: `go get -u github.com/voltento/WsTool`<br/><br/>
-Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`  
+`go get -u github.com/voltento/WsTool`<br/>
 For instalation run command: `go get -u github.com/voltento/WsTool`<br/>
-Binary will be installed to the `$GOPATH/bin` folder<br/>
-You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go`
+Binary will be installed to the `$GOPATH/bin` folder<br/><br/>
+You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
 Check for more information about golang instal and configuration
 - https://golang.org/doc/install 
