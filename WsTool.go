@@ -4,10 +4,10 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"github.com/voltento/WsTool/Utils"
 	"github.com/voltento/WsTool/WebSocketClient"
 	"net/http"
 	"os"
-	"strings"
 )
 
 type Adress string
@@ -16,27 +16,9 @@ func printHelp() {
 	fmt.Println("Args: url [-H \"HeaderName: Header Value\"] [-C \"CookieName: Cookie Value\"]")
 }
 
-func parseHeaderKeyValue(s string) (string, string, error) {
-	var (
-		key   string
-		value string
-		er    error
-	)
-	header := strings.SplitAfterN(s, ":", 2)
-	if len(header) != 2 {
-		er = errors.New(fmt.Sprintf("Wrong header value. Header: %s\n", s))
-	} else {
-		key = header[0]
-		key = key[:len(key)-1]
-		value = header[1]
-	}
-
-	return key, value, er
-}
-
-func processError(er error) {
+func ProcessError(er error) {
 	if er != nil {
-		fmt.Printf("Error occured. Error: ", er.Error())
+		fmt.Printf("Error occured. Error: %v", er.Error())
 		printHelp()
 		os.Exit(1)
 	}
@@ -67,17 +49,17 @@ func parseArgs() (Adress, http.Header) {
 
 		if argType == undefined {
 			er := errors.New(fmt.Sprintf("Can't parse arg value. Value: %s\n", os.Args[argIndex]))
-			processError(er)
+			ProcessError(er)
 		}
 
 		argIndex += 1
 		if argIndex == len(os.Args) {
-			er := errors.New(fmt.Sprintf("Value for header flag wasn't provided\n", os.Args[argIndex]))
-			processError(er)
+			er := errors.New(fmt.Sprintf("Value for header flag wasn't provided. Value: %s\n", os.Args[argIndex]))
+			ProcessError(er)
 		}
 
-		key, value, er := parseHeaderKeyValue(os.Args[argIndex])
-		processError(er)
+		key, value, er := Utils.ParseHeaderKeyValue(os.Args[argIndex])
+		ProcessError(er)
 
 		if argType == header {
 			headers.Add(key, value)
