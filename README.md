@@ -15,6 +15,10 @@ Check for more information about golang instal and configuration
 - https://golang.org/doc/install 
 - https://github.com/golang/go/wiki/SettingGOPATH
 
+**Remove**
+
+`go clean -i github.com/voltento/WsTool`
+
 **Dependenciec**
 - Golang 1.11.2 or above
 - Set `$GOPATH` before call installation script
