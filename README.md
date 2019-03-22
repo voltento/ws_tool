@@ -6,9 +6,8 @@ Also, here is header customization.
 
 **Install**
 
-`go get -u github.com/voltento/WsTool`<br/>
-For instalation run command: `go get -u github.com/voltento/WsTool`<br/>
-Binary will be installed to the `$GOPATH/bin` folder<br/><br/>
+`go get -u github.com/voltento/WsTool`<br/> <br/>
+The command will install the binary `wstool` to the `$GOPATH/bin` folder<br/><br/>
 You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
 Check for more information about golang instal and configuration
