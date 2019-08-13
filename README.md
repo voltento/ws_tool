@@ -28,6 +28,26 @@ Usage example: `./WsTool ws://localhost:3000/echo/websocket -H "host:ws" -C "use
 
 Use flag `--help` for more information
 
+**Supported commands**
+
+You can specify file with commands 
+Usage example: `./WsTool ws://localhost:3000/echo/websocket commands -H "host:ws" -C "userId=1"`
+After processing all commands from file wstool will still listening 
+
+Supporting commands:
+
+- `<` - will read any message from ws connection and print it on screen
+- `> msg` - will send msg to ws connection and print it on screen
+
+Commands file example:
+
+```
+<
+> {"message": "foo"}
+<
+```
+
+
 **Testing**
 
 `cd $GOPATH/github.com/voltento/WsTool`<br/>
