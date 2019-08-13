@@ -12,9 +12,7 @@ import (
 
 func main() {
 
-	filePath := "/Users/vladimir.dumanovskiy/go/src/github.com/voltento/WsTool/commands"
-	commands := command.CreateReaderFromFile(filePath)
-	adress, headers := utils.ParseArgs()
+	adress, headers, commandsFilePath := utils.ParseArgs()
 
 	ws := new(web_socket_client.WebSocket)
 	if er := ws.Connect(string(adress), headers); er != nil {
@@ -22,11 +20,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	mgr := handlers.CreateHandlerManager(ws)
-	for cmd := range commands {
-		if er := mgr.Handle(cmd); er != nil {
-			fmt.Printf("Error occured. Error: %v", er.Error())
-			os.Exit(1)
+	if len(commandsFilePath) > 0 {
+		mgr := handlers.CreateHandlerManager(ws)
+		for cmd := range command.CreateReaderFromFile(commandsFilePath) {
+			if er := mgr.Handle(cmd); er != nil {
+				fmt.Printf("Error occured. Error: %v", er.Error())
+				os.Exit(1)
+			}
 		}
 	}
 

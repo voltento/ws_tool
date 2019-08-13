@@ -25,11 +25,11 @@ func CreateReaderFromFile(file string) chan *Command {
 		for _, rawCommand := range rawCommands {
 			var c Command
 			i := strings.Index(rawCommand, " ")
-			if i == -1 {
+			if i == -1 || i == len(rawCommand) {
 				c.Name = rawCommand
 			} else {
 				c.Name = rawCommand[:i]
-				c.Args = rawCommand[i:]
+				c.Args = rawCommand[i+1:]
 			}
 
 			reader <- &c

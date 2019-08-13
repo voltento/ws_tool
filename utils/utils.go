@@ -29,7 +29,7 @@ func ParseHeaderKeyValue(s string) (string, string, error) {
 type Adress string
 
 func printHelp() {
-	fmt.Println("Args: url [-H \"HeaderName: Header Value\"] [-C \"CookieName: Cookie Value\"]")
+	fmt.Println("Args: url [commands_file] [-H \"HeaderName: Header Value\"] [-C \"CookieName: Cookie Value\"]")
 }
 
 func ProcessError(er error) {
@@ -46,7 +46,8 @@ const (
 	undefined
 )
 
-func ParseArgs() (Adress, http.Header) {
+func ParseArgs() (Adress, http.Header, string) {
+	var commandsFile string
 	if len(os.Args) == 1 || os.Args[1] == "--help" {
 		printHelp()
 		os.Exit(0)
@@ -61,6 +62,10 @@ func ParseArgs() (Adress, http.Header) {
 			argType = header
 		} else if os.Args[argIndex] == "-C" {
 			argType = coockie
+		} else if argIndex == 2 {
+			commandsFile = os.Args[argIndex]
+			argIndex += 1
+			continue
 		}
 
 		if argType == undefined {
@@ -88,5 +93,5 @@ func ParseArgs() (Adress, http.Header) {
 		argIndex += 1
 	}
 
-	return Adress(os.Args[1]), headers
+	return Adress(os.Args[1]), headers, commandsFile
 }
