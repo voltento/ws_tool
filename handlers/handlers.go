@@ -3,8 +3,8 @@ package handlers
 import (
 	"errors"
 	"fmt"
-	"github.com/voltento/WsTool/WebSocketClient"
 	"github.com/voltento/WsTool/command"
+	"github.com/voltento/WsTool/web_socket_client"
 	"os"
 )
 
@@ -18,7 +18,7 @@ func InitMgrHandlers(mgr *HandlerManager) {
 	er = mgr.AddHandler(">", Handler(writeMessage))
 }
 
-func readMessage(ws *WebSocketClient.WebSocket, _ command.Command) error {
+func readMessage(ws *web_socket_client.WebSocket, _ command.Command) error {
 	msg, er := ws.ReadOneMessage()
 	if er != nil {
 		return errors.New(fmt.Sprintf("Error occured on in `readMessage` handler. Reason: `%v`", er))
@@ -27,7 +27,7 @@ func readMessage(ws *WebSocketClient.WebSocket, _ command.Command) error {
 	return nil
 }
 
-func writeMessage(ws *WebSocketClient.WebSocket, cmd command.Command) error {
+func writeMessage(ws *web_socket_client.WebSocket, cmd command.Command) error {
 	er := ws.SendMessage(cmd.Args)
 	if er != nil {
 		return errors.New(fmt.Sprintf("Error occured on in `writeMessage` handler. Reason: `%v`", er))

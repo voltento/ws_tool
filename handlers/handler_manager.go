@@ -3,15 +3,15 @@ package handlers
 import (
 	"errors"
 	"fmt"
-	"github.com/voltento/WsTool/WebSocketClient"
 	"github.com/voltento/WsTool/command"
+	"github.com/voltento/WsTool/web_socket_client"
 )
 
-type Handler func(*WebSocketClient.WebSocket, command.Command) error
+type Handler func(*web_socket_client.WebSocket, command.Command) error
 
 type HandlerManager struct {
 	handlers map[string]Handler
-	ws       *WebSocketClient.WebSocket
+	ws       *web_socket_client.WebSocket
 }
 
 func (mgr *HandlerManager) AddHandler(command string, h Handler) error {
@@ -23,7 +23,7 @@ func (mgr *HandlerManager) AddHandler(command string, h Handler) error {
 	return nil
 }
 
-func CreateHandlerManager(ws *WebSocketClient.WebSocket) HandlerManager {
+func CreateHandlerManager(ws *web_socket_client.WebSocket) HandlerManager {
 	mgr := HandlerManager{make(map[string]Handler), ws}
 	InitMgrHandlers(&mgr)
 	return mgr

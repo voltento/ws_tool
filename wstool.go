@@ -3,10 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/voltento/WsTool/Utils"
-	"github.com/voltento/WsTool/WebSocketClient"
 	"github.com/voltento/WsTool/command"
 	"github.com/voltento/WsTool/handlers"
+	"github.com/voltento/WsTool/utils"
+	"github.com/voltento/WsTool/web_socket_client"
 	"os"
 )
 
@@ -14,9 +14,9 @@ func main() {
 
 	filePath := "/Users/vladimir.dumanovskiy/go/src/github.com/voltento/WsTool/commands"
 	commands := command.CreateReaderFromFile(filePath)
-	adress, headers := Utils.ParseArgs()
+	adress, headers := utils.ParseArgs()
 
-	ws := new(WebSocketClient.WebSocket)
+	ws := new(web_socket_client.WebSocket)
 	if er := ws.Connect(string(adress), headers); er != nil {
 		println("Error on connection. Reason: " + er.Error())
 		os.Exit(1)
@@ -35,7 +35,7 @@ func main() {
 	readFromConsoleAndSendToWs(ws)
 }
 
-func printMessageFromWs(ws *WebSocketClient.WebSocket) {
+func printMessageFromWs(ws *web_socket_client.WebSocket) {
 	var err error
 	var msg string
 	for {
@@ -48,7 +48,7 @@ func printMessageFromWs(ws *WebSocketClient.WebSocket) {
 	}
 }
 
-func readFromConsoleAndSendToWs(ws *WebSocketClient.WebSocket) {
+func readFromConsoleAndSendToWs(ws *web_socket_client.WebSocket) {
 	for {
 		reader := bufio.NewReader(os.Stdin)
 
