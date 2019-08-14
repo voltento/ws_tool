@@ -1,7 +1,7 @@
 **DOC**
 
 This is simple WebSocket client.<br/>
-It can connect to a server by WebSocket protocol, send and get messages.<br/>
+It can connect to a server by WebSocket protocol, send and get messages and perform scenarios.<br/>
 Also, here is header customization.
 
 **Install**
