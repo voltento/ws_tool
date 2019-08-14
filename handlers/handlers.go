@@ -10,12 +10,18 @@ import (
 
 func InitMgrHandlers(mgr *HandlerManager) {
 	var er error
-	er = mgr.AddHandler("<", Handler(readMessage))
-	if er != nil {
-		fmt.Printf("Error occured on read message. Reason: `%v`", er)
-		os.Exit(2)
+	addHandler := func(command string, h Handler) {
+		er = mgr.AddHandler(command, h)
+
+		if er != nil {
+			fmt.Printf("Error occured on read message. Reason: `%v`", er)
+			os.Exit(2)
+		}
 	}
-	er = mgr.AddHandler(">", Handler(writeMessage))
+
+	addHandler("<", readMessage)
+	addHandler(">", writeMessage)
+	addHandler("exit", exit)
 }
 
 func readMessage(ws *web_socket_client.WebSocket, _ command.Command) error {
@@ -33,5 +39,13 @@ func writeMessage(ws *web_socket_client.WebSocket, cmd command.Command) error {
 		return errors.New(fmt.Sprintf("Error occured on in `writeMessage` handler. Reason: `%v`", er))
 	}
 	fmt.Printf("> %v\n", cmd.Args)
+	return nil
+}
+
+func exit(ws *web_socket_client.WebSocket, cmd command.Command) error {
+	_ = ws
+	_ = cmd
+	fmt.Printf("Exit command was called.")
+	os.Exit(0)
 	return nil
 }

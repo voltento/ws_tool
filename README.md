@@ -18,7 +18,7 @@ Check for more information about golang install and configuration
 
 `go clean -i github.com/voltento/WsTool`
 
-**Dependenciec**
+**Dependencies**
 - Golang 1.11.2 or above
 - Set `$GOPATH` before call installation script
 
@@ -30,14 +30,15 @@ Use flag `--help` for more information
 
 **Supported commands**
 
-You can specify file with commands 
+You can specify file with scenario 
 Usage example: `./WsTool ws://localhost:3000/echo/websocket commands -H "host:ws" -C "userId=1"`
-After processing all commands from file wstool will still listening 
+After processing all commands from a scenario file wstool will still listening if exit command wasn't call explicitly.
 
 Supporting commands:
 
 - `<` - will read any message from ws connection and print it on screen
 - `> msg` - will send msg to ws connection and print it on screen
+- `exit` - will terminate wstool
 
 Commands file example:
 

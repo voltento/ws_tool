@@ -12,10 +12,10 @@ import (
 
 func main() {
 
-	adress, headers, commandsFilePath := utils.ParseArgs()
+	address, headers, commandsFilePath := utils.ParseArgs()
 
 	ws := new(web_socket_client.WebSocket)
-	if er := ws.Connect(string(adress), headers); er != nil {
+	if er := ws.Connect(string(address), headers); er != nil {
 		println("Error on connection. Reason: " + er.Error())
 		os.Exit(1)
 	}
