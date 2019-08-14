@@ -20,7 +20,7 @@ func (w *WebSocket) Connect(address string, header http.Header) (err error) {
 }
 
 func (w *WebSocket) Close() {
-	w.Connection.Close()
+	_ = w.Connection.Close()
 }
 
 func (w *WebSocket) SendMessage(message string) error {
