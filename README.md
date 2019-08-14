@@ -31,7 +31,7 @@ Use flag `--help` for more information
 **Supported commands**
 
 You can specify file with scenario 
-Usage example: `./WsTool ws://localhost:3000/echo/websocket commands -H "host:ws" -C "userId=1"`
+Usage example: `./WsTool ws://localhost:3000/echo/websocket commands.txt -H "host:ws" -C "userId=1"`
 After processing all commands from a scenario file wstool will still listening if exit command wasn't call explicitly.
 
 Supporting commands:
