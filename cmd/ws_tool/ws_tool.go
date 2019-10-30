@@ -3,11 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/voltento/WsTool/command"
-	"github.com/voltento/WsTool/handlers"
-	"github.com/voltento/WsTool/utils"
-	"github.com/voltento/WsTool/web_socket_client"
 	"os"
+
+	"github.com/voltento/WsTool/internal/utils"
+	"github.com/voltento/WsTool/pkg/command"
+	"github.com/voltento/WsTool/pkg/handlers"
+	"github.com/voltento/WsTool/pkg/web_socket_client"
 )
 
 func main() {

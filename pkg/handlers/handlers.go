@@ -3,8 +3,8 @@ package handlers
 import (
 	"errors"
 	"fmt"
-	"github.com/voltento/WsTool/command"
-	"github.com/voltento/WsTool/web_socket_client"
+	"github.com/voltento/WsTool/pkg/command"
+	"github.com/voltento/WsTool/pkg/web_socket_client"
 	"os"
 )
 

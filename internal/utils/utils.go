@@ -46,7 +46,7 @@ const (
 	undefined
 )
 
-func ParseArgs() (Adress, http.Header, string) {
+func ParseArgs() (Address, http.Header, string) {
 	var commandsFile string
 	if len(os.Args) == 1 || os.Args[1] == "--help" {
 		printHelp()
@@ -93,5 +93,5 @@ func ParseArgs() (Adress, http.Header, string) {
 		argIndex += 1
 	}
 
-	return Adress(os.Args[1]), headers, commandsFile
+	return Address(os.Args[1]), headers, commandsFile
 }
