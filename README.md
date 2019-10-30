@@ -6,8 +6,8 @@ Also, here is header customization.
 
 **Install**
 
-`go get -u github.com/voltento/WsTool`<br/> <br/>
-The command will install the binary `wstool` to the `$GOPATH/bin` folder<br/><br/>
+`go install -i github.com/voltento/WsTool/cmd/ws_tool`<br/> <br/>
+The command will install the binary `ws_tool` to the `$GOPATH/bin` folder<br/><br/>
 You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
 Check for more information about golang install and configuration
@@ -24,21 +24,21 @@ Check for more information about golang install and configuration
 
 **Usage**
 
-Usage example: `./WsTool ws://localhost:3000/echo/websocket -H "host:ws" -C "userId=1"`
+Usage example: `./ws_tool ws://localhost:3000/echo/websocket -H "host:ws" -C "userId=1"`
 
 Use flag `--help` for more information
 
 **Supported commands**
 
 You can specify file with scenario 
-Usage example: `./WsTool ws://localhost:3000/echo/websocket commands.txt -H "host:ws" -C "userId=1"`
-After processing all commands from a scenario file wstool will still listening if exit command wasn't call explicitly.
+Usage example: `./ws_tool ws://localhost:3000/echo/websocket commands.txt -H "host:ws" -C "userId=1"`
+After processing all commands from a scenario file ws_tool will still listening if exit command wasn't call explicitly.
 
 Supporting commands:
 
 - `<` - will read any message from ws connection and print it on screen
 - `> msg` - will send msg to ws connection and print it on screen
-- `exit` - will terminate wstool
+- `exit` - will terminate ws_tool
 
 Commands file example:
 
