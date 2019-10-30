@@ -37,15 +37,21 @@ func main() {
 }
 
 func printMessageFromWs(ws *web_socket_client.WebSocket) {
-	var err error
-	var msg string
-	for {
-		msg, err = ws.ReadOneMessage()
+	messages, err := ws.Messages()
+	if err != nil {
 		if err != nil {
 			fmt.Printf("Error occurred during read from socket. Error: %s\n", err.Error())
 			os.Exit(0)
 		}
-		print("< : ", msg, "\n")
+	}
+
+	for {
+		message := <-messages
+		if message == nil {
+			fmt.Print("Connection was closed")
+			os.Exit(0)
+		}
+		print("< : ", *message, "\n")
 	}
 }
 
