@@ -1,4 +1,4 @@
-module github.com/voltento/WsTool
+module github.com/voltento/ws_tool
 
 go 1.12
 

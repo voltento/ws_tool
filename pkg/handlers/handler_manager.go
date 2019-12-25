@@ -3,8 +3,8 @@ package handlers
 import (
 	"errors"
 	"fmt"
-	"github.com/voltento/WsTool/pkg/command"
-	"github.com/voltento/WsTool/pkg/web_socket_client"
+	"github.com/voltento/ws_tool/pkg/command"
+	"github.com/voltento/ws_tool/pkg/web_socket_client"
 )
 
 type Handler func(*web_socket_client.WebSocket, command.Command) error

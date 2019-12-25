@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/voltento/WsTool/internal/utils"
-	"github.com/voltento/WsTool/pkg/command"
-	"github.com/voltento/WsTool/pkg/handlers"
-	"github.com/voltento/WsTool/pkg/web_socket_client"
+	"github.com/voltento/ws_tool/internal/utils"
+	"github.com/voltento/ws_tool/pkg/command"
+	"github.com/voltento/ws_tool/pkg/handlers"
+	"github.com/voltento/ws_tool/pkg/web_socket_client"
 )
 
 func main() {

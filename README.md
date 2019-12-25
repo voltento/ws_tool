@@ -6,7 +6,7 @@ Also, here is header customization.
 
 **Install**
 
-`go get github.com/voltento/WsTool/cmd/ws_tool`<br/> <br/>
+`go get github.com/voltento/ws_tool/cmd/ws_tool`<br/> <br/>
 The command will install the binary `ws_tool` to the `$GOPATH/bin` folder<br/><br/>
 You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
@@ -16,7 +16,7 @@ Check for more information about golang install and configuration
 
 **Remove**
 
-`go clean -i github.com/voltento/WsTool`
+`go clean -i github.com/voltento/ws_tool`
 
 **Dependencies**
 - Golang 1.11.2 or above
@@ -51,5 +51,5 @@ Commands file example:
 
 **Testing**
 
-`cd $GOPATH/github.com/voltento/WsTool`<br/>
+`cd $GOPATH/github.com/voltento/ws_tool`<br/>
 `go test ./...`
