@@ -6,7 +6,7 @@ Also, here is header customization.
 
 **Install**
 
-`go get github.com/voltento/ws_tool/cmd/ws_tool`<br/> <br/>
+`GO111MODULE=on go get github.com/voltento/ws_tool/cmd/ws_tool`<br/> <br/>
 The command will install the binary `ws_tool` to the `$GOPATH/bin` folder<br/><br/>
 You must have installed golang and set the `$GOPATH` f.e. `export GOPATH=$HOME/go` Set `$GOPATH` if it wasn't set before. F.e. `export GOPATH=$HOME/go`
 
