@@ -24,14 +24,14 @@ Check for more information about golang install and configuration
 
 **Usage**
 
-Usage example: `./ws_tool ws://localhost:3000/echo/websocket -H "host:ws" -C "userId=1"`
+Usage example: `./ws_tool ws://localhost:3000/echo/websocket -H "host:ws"`
 
 Use flag `--help` for more information
 
 **Supported commands**
 
 You can specify file with scenario 
-Usage example: `./ws_tool ws://localhost:3000/echo/websocket commands.txt -H "host:ws" -C "userId=1"`
+Usage example: `./ws_tool ws://localhost:3000/echo/websocket commands.txt -H "host:ws"`
 After processing all commands from a scenario file ws_tool will still listening if exit command wasn't call explicitly.
 
 Supporting commands:
