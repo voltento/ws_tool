@@ -46,9 +46,9 @@ const (
 	undefined
 )
 
-func ParseArgs() (Address, http.Header, string) {
+func ParseArgs(args []string) (Address, http.Header, string) {
 	var commandsFile string
-	if len(os.Args) == 1 || os.Args[1] == "--help" {
+	if len(args) == 1 || args[1] == "--help" {
 		printHelp()
 		os.Exit(0)
 	}
@@ -56,30 +56,30 @@ func ParseArgs() (Address, http.Header, string) {
 	headers := http.Header{}
 	argIndex := 2
 	argType := undefined
-	for argIndex < len(os.Args) {
+	for argIndex < len(args) {
 
-		if os.Args[argIndex] == "-H" {
+		if args[argIndex] == "-H" {
 			argType = header
-		} else if os.Args[argIndex] == "-C" {
+		} else if args[argIndex] == "-C" {
 			argType = cookie
 		} else if argIndex == 2 {
-			commandsFile = os.Args[argIndex]
+			commandsFile = args[argIndex]
 			argIndex += 1
 			continue
 		}
 
 		if argType == undefined {
-			er := errors.New(fmt.Sprintf("Can't parse arg value. Value: %s\n", os.Args[argIndex]))
+			er := errors.New(fmt.Sprintf("Can't parse arg value. Value: %s\n", args[argIndex]))
 			ProcessError(er)
 		}
 
 		argIndex += 1
-		if argIndex == len(os.Args) {
-			er := errors.New(fmt.Sprintf("Value for header flag wasn't provided. Value: %s\n", os.Args[argIndex]))
+		if argIndex == len(args) {
+			er := errors.New(fmt.Sprintf("Value for header flag wasn't provided. Value: %s\n", args[argIndex]))
 			ProcessError(er)
 		}
 
-		key, value, er := ParseHeaderKeyValue(os.Args[argIndex])
+		key, value, er := ParseHeaderKeyValue(args[argIndex])
 		ProcessError(er)
 
 		if argType == header {
@@ -93,5 +93,5 @@ func ParseArgs() (Address, http.Header, string) {
 		argIndex += 1
 	}
 
-	return Address(os.Args[1]), headers, commandsFile
+	return Address(args[1]), headers, commandsFile
 }

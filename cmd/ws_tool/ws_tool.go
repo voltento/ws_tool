@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	address, headers, commandsFilePath := utils.ParseArgs()
+	address, headers, commandsFilePath := utils.ParseArgs(os.Args)
 
 	ws := new(web_socket_client.WebSocket)
 	if er := ws.Connect(string(address), headers); er != nil {
